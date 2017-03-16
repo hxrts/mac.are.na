@@ -1,6 +1,8 @@
 import React from 'react'
-// import {Pagination} from 'pui-react-pagination'
-import { find } from 'lodash'
+<<<<<<< HEAD
+=======
+import { find, findIndex } from 'lodash'
+>>>>>>> Attempt to play next track
 import { apiBase } from '../config'
 import { onlySongs } from '../lib/filter'
 import Header from '../components/header'
@@ -33,6 +35,23 @@ class Playlist extends React.Component {
         console.log('parsing failed', ex);
       })
   }
+
+  playNext() {
+    const selectedItemIndex = findIndex(this.state.items, (item) => {
+      return item.id === this.state.selectedID
+    })
+    const newItemIndex = (
+      selectedItemIndex + 1 > this.state.items.length ? 
+      0 :
+      selectedItemIndex + 1 
+    )
+    const newItem = this.state.items[newItemIndex]
+    console.log('playing new item', newItem, this)
+    this.setState({
+      selectedItem: newItem
+    })
+  }
+
   render () {
     let items = []
     for (var i=0; i < this.state.items.length; i++) {
@@ -41,8 +60,8 @@ class Playlist extends React.Component {
           key={this.state.items[i].id} 
           item={this.state.items[i]}
           isSelected={this.state.items[i].id === this.state.selectedID}
+          onTrackEnd={this.playNext}
           onPress={(id) => {
-            console.log('onPress', id, 'this', this)
             this.setState({ selectedID: id }) 
           }}
         />
