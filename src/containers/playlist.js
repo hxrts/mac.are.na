@@ -1,8 +1,5 @@
 import React from 'react'
-<<<<<<< HEAD
-=======
 import { find, findIndex } from 'lodash'
->>>>>>> Attempt to play next track
 import { apiBase } from '../config'
 import { onlySongs } from '../lib/filter'
 import Header from '../components/header'
