@@ -16,6 +16,15 @@ const youtubeOptions = {
 };
 
 class PlaylistPlayer extends React.Component {
+
+  _onVolume = (event) => {
+    this.setVolume({ volume: 100 });
+  };
+
+  _onReady = (event) => {
+    this.setVolume({ volume: 100 });
+  };
+
   render () {
     const item = this.props.item
     let el = <div/>;
@@ -30,6 +39,7 @@ class PlaylistPlayer extends React.Component {
         break;
       
       case 'youtube':
+
         const id = getYoutubeId(item.source.url)
         if (id) {
           el = (
@@ -40,6 +50,7 @@ class PlaylistPlayer extends React.Component {
               <Youtube
                 opts={youtubeOptions}
                 videoId={id} 
+                onReady={this._onReady}
                 onEnd={this.props.onTrackEnd}
               />
             </div>

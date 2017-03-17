@@ -1,4 +1,5 @@
 import React from 'react'
+var he = require('he');
 
 class PlaylistItem extends React.Component {
   render () {
@@ -6,13 +7,13 @@ class PlaylistItem extends React.Component {
     const itemClass = "bb pv3 bg-animate"
     const selectedClass = (
       this.props.isSelected ?
-      itemClass + ' bg-light-pink ' :
-      itemClass + ' hover-bg-washed-red'
+      itemClass + ' bg-light-green ' :
+      itemClass + ' hover-bg-washed-green'
     )
     return (
       <div style={{ cursor: "pointer" }} className={selectedClass} onClick={() => this.props.onPress(item.id)}>
         <a className="list-item link dim black">
-          {item.title}
+          {he.decode(item.title)}
         </a>
       </div>
     )

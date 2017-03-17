@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+var he = require('he');
 
 class PlaylistLink extends React.Component {
   render () {
@@ -13,7 +14,7 @@ class PlaylistLink extends React.Component {
     return (
       <div  className={selectedClass}>
         <Link className="list-item link dim black" to={`/playlist/${playlist.slug}`}>
-          {playlist.user.full_name} / {playlist.title}
+          {playlist.user.full_name} / {he.decode(playlist.title)}
         </Link>
       </div>
     )
